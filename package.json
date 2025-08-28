@@ -1,0 +1,13 @@
+{
+  "name": "mori-tea-backend",
+  "version": "1.0.0",
+  "description": "PocketBase backend for Mori Tea Store",
+  "scripts": {
+    "start": "./pocketbase serve --http=0.0.0.0:$PORT",
+    "build": "echo 'Downloading PocketBase...' && wget https://github.com/pocketbase/pocketbase/releases/download/v0.26.2/pocketbase_0.26.2_linux_amd64.zip && unzip pocketbase_0.26.2_linux_amd64.zip && chmod +x pocketbase && rm pocketbase_0.26.2_linux_amd64.zip && echo 'PocketBase ready!'"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=18"
+  }
+}
