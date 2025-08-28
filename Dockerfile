@@ -22,12 +22,9 @@ RUN unzip /tmp/pb.zip -d /app/ && \
 COPY pocketbase-schema.json /app/schema.json
 COPY pb_migrations /app/pb_migrations
 
-# Railway uses $PORT environment variable
-EXPOSE $PORT
-
-# Health check for Railway
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:$PORT/api/health || exit 1
+# Expose common port (Railway will override with $PORT)
+EXPOSE 8080
 
 # Start PocketBase with Railway's dynamic port
-CMD ./pocketbase serve --http=0.0.0.0:$PORT
+# Railway automatically provides $PORT environment variable
+CMD sh -c './pocketbase serve --http=0.0.0.0:${PORT:-8080}'
